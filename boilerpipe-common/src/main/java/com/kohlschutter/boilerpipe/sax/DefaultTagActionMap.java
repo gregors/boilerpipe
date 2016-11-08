@@ -8,9 +8,6 @@ import com.kohlschutter.boilerpipe.labels.LabelAction;
  */
 public class DefaultTagActionMap extends TagActionMap {
 
-  /**
-     * 
-     */
   private static final long serialVersionUID = 1L;
 
   public static final TagActionMap INSTANCE = new DefaultTagActionMap();
