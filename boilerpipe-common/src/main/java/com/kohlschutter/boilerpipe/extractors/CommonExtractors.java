@@ -24,11 +24,4 @@ public final class CommonExtractors {
    */
   public static final LargestContentExtractor LARGEST_CONTENT_EXTRACTOR =
       LargestContentExtractor.INSTANCE;
-
-  /**
-   * Dummy Extractor; should return the input text. Use this to double-check that your problem is
-   * within a particular {@link BoilerpipeExtractor}, or somewhere else.
-   */
-  public static final KeepEverythingExtractor KEEP_EVERYTHING_EXTRACTOR =
-      KeepEverythingExtractor.INSTANCE;
 }
