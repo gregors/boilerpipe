@@ -43,11 +43,6 @@ public final class CommonExtractors {
       LargestContentExtractor.INSTANCE;
 
   /**
-   * Trained on krdwrd Canola (different definition of "boilerplate"). You may give it a try.
-   */
-  public static final CanolaExtractor CANOLA_EXTRACTOR = CanolaExtractor.INSTANCE;
-
-  /**
    * Dummy Extractor; should return the input text. Use this to double-check that your problem is
    * within a particular {@link BoilerpipeExtractor}, or somewhere else.
    */
