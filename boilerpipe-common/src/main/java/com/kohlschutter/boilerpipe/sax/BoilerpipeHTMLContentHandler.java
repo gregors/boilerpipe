@@ -140,8 +140,7 @@ public class BoilerpipeHTMLContentHandler implements ContentHandler {
   }
 
   // @Override
-  public void startElement(String uri, String localName, String qName, Attributes atts)
-      throws SAXException {
+  public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
     labelStacks.add(null);
 
     TagAction ta = tagActions.get(localName);
