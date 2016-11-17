@@ -51,11 +51,8 @@ public class DefaultTagActionMap extends TagActionMap {
 
     // New in 1.3
     setTagAction("LI", new CommonTagActions.BlockTagLabelAction(new LabelAction(DefaultLabels.LI)));
-    setTagAction("H1", new CommonTagActions.BlockTagLabelAction(new LabelAction(DefaultLabels.H1,
-        DefaultLabels.HEADING)));
-    setTagAction("H2", new CommonTagActions.BlockTagLabelAction(new LabelAction(DefaultLabels.H2,
-        DefaultLabels.HEADING)));
-    setTagAction("H3", new CommonTagActions.BlockTagLabelAction(new LabelAction(DefaultLabels.H3,
-        DefaultLabels.HEADING)));
+    setTagAction("H1", new CommonTagActions.BlockTagLabelAction(new LabelAction(DefaultLabels.H1, DefaultLabels.HEADING)));
+    setTagAction("H2", new CommonTagActions.BlockTagLabelAction(new LabelAction(DefaultLabels.H2, DefaultLabels.HEADING)));
+    setTagAction("H3", new CommonTagActions.BlockTagLabelAction(new LabelAction(DefaultLabels.H3, DefaultLabels.HEADING)));
   }
 }
