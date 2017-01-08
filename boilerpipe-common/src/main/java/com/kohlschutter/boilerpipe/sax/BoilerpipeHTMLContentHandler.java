@@ -269,7 +269,7 @@ public class BoilerpipeHTMLContentHandler implements ContentHandler {
 
   public void flushBlock() {
     if (inBody == 0) {
-      if ("TITLE".equalsIgnoreCase(lastStartTag) && inBody == 0) {
+      if ("TITLE".equalsIgnoreCase(lastStartTag)) {
         setTitle(tokenBuffer.toString().trim());
       }
       textBuffer.setLength(0);
