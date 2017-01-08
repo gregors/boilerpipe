@@ -202,11 +202,14 @@ public class BoilerpipeHTMLContentHandler implements ContentHandler {
     }
 
     final int end = start + length;
+    // replace all whitespace chars with simple space
     for (int i = start; i < end; i++) {
       if (Character.isWhitespace(ch[i])) {
         ch[i] = ' ';
       }
     }
+
+    // trim whitespace from start
     while (start < end) {
       c = ch[start];
       if (c == ' ') {
@@ -217,6 +220,8 @@ public class BoilerpipeHTMLContentHandler implements ContentHandler {
         break;
       }
     }
+
+    // trim whitespace from end
     while (length > 0) {
       c = ch[start + length - 1];
       if (c == ' ') {
@@ -226,6 +231,8 @@ public class BoilerpipeHTMLContentHandler implements ContentHandler {
         break;
       }
     }
+
+    // append leading whitespace if previous wansn't one
     if (length == 0) {
       if (startWhitespace || endWhitespace) {
         if (!sbLastWasWhitespace) {
@@ -239,6 +246,7 @@ public class BoilerpipeHTMLContentHandler implements ContentHandler {
       lastEvent = Event.WHITESPACE;
       return;
     }
+
     if (startWhitespace) {
       if (!sbLastWasWhitespace) {
         textBuffer.append(' ');
@@ -246,12 +254,16 @@ public class BoilerpipeHTMLContentHandler implements ContentHandler {
       }
     }
 
+    // set block level
     if (blockTagLevel == -1) {
       blockTagLevel = tagLevel;
     }
 
+    // add text to buffers
     textBuffer.append(ch, start, length);
     tokenBuffer.append(ch, start, length);
+
+    // add trailing space
     if (endWhitespace) {
       textBuffer.append(' ');
       tokenBuffer.append(' ');
@@ -321,9 +333,11 @@ public class BoilerpipeHTMLContentHandler implements ContentHandler {
         numTokens++;
       }
     }
+
     if (numTokens == 0) {
       return;
     }
+
     int numWordsInWrappedLines;
     if (numWrappedLines == 0) {
       numWordsInWrappedLines = numWords;
