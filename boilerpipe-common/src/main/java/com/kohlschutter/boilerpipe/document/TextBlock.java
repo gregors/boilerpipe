@@ -14,7 +14,7 @@ import com.kohlschutter.boilerpipe.labels.DefaultLabels;
  */
 public class TextBlock implements Cloneable {
   boolean isContent = false;
-  private CharSequence text;
+  private StringBuilder text;
   Set<String> labels = null;
 
   int offsetBlocksStart;
@@ -44,7 +44,7 @@ public class TextBlock implements Cloneable {
   public TextBlock(final String text, final BitSet containedTextElements, final int numWords,
       final int numWordsInAnchorText, final int numWordsInWrappedLines, final int numWrappedLines,
       final int offsetBlocks) {
-    this.text = text;
+    this.text = new StringBuilder(text);
     this.containedTextElements = containedTextElements;
     this.numWords = numWords;
     this.numWordsInAnchorText = numWordsInAnchorText;
@@ -243,8 +243,8 @@ public class TextBlock implements Cloneable {
     } catch (CloneNotSupportedException e) {
       throw new RuntimeException(e);
     }
-    if (text != null && !(text instanceof String)) {
-      clone.text = new StringBuilder(text);
+    if (text != null && text instanceof StringBuilder) {
+      clone.text = new StringBuilder(text.toString());
     }
     if (labels != null && !labels.isEmpty()) {
       clone.labels = new HashSet<String>(labels);
