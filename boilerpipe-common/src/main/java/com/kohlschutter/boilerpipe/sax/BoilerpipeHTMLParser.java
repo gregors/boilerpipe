@@ -32,17 +32,8 @@ public class BoilerpipeHTMLParser extends AbstractSAXParser implements Boilerpip
     setContentHandler(contentHandler);
   }
 
-  protected BoilerpipeHTMLParser(boolean ignore) {
-    super(new HTMLConfiguration());
-  }
-
   public void setContentHandler(final BoilerpipeHTMLContentHandler contentHandler) {
     this.contentHandler = contentHandler;
-    super.setContentHandler(contentHandler);
-  }
-
-  public void setContentHandler(final org.xml.sax.ContentHandler contentHandler) {
-    this.contentHandler = null;
     super.setContentHandler(contentHandler);
   }
 
