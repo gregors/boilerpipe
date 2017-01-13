@@ -62,8 +62,8 @@ public final class DocumentTitleMatchClassifier implements BoilerpipeFilter {
           potentialTitles.add(p);
         }
 
-        addPotentialTitles(potentialTitles, title, "[ ]+[\\|][ ]+", 4);
-        addPotentialTitles(potentialTitles, title, "[ ]+[\\-][ ]+", 4);
+        addPotentialTitles(title, "[ ]+[\\|][ ]+", 4);
+        addPotentialTitles(title, "[ ]+[\\-][ ]+", 4);
 
         potentialTitles.add(title.replaceFirst(" - [^\\-]+$", ""));
         potentialTitles.add(title.replaceFirst("^[^\\-]+ - ", ""));
@@ -75,8 +75,7 @@ public final class DocumentTitleMatchClassifier implements BoilerpipeFilter {
     return potentialTitles;
   }
 
-  private void addPotentialTitles(final Set<String> potentialTitles, final String title,
-      final String pattern, final int minWords) {
+  private void addPotentialTitles(final String title, final String pattern, final int minWords) {
     String[] parts = title.split(pattern);
     if (parts.length == 1) {
       return;
@@ -88,7 +87,7 @@ public final class DocumentTitleMatchClassifier implements BoilerpipeFilter {
       }
       final int numWords = p.split("[\b ]+").length;
       if (numWords >= minWords) {
-        potentialTitles.add(p);
+        this.potentialTitles.add(p);
       }
     }
   }
