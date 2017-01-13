@@ -46,8 +46,6 @@ public class BoilerpipeHTMLContentHandler implements ContentHandler {
 
   private String lastStartTag = null;
   @SuppressWarnings("unused")
-  private String lastEndTag = null;
-  @SuppressWarnings("unused")
   private Event lastEvent = null;
 
   private int offsetBlocks = 0;
@@ -75,7 +73,6 @@ public class BoilerpipeHTMLContentHandler implements ContentHandler {
     textBlocks.clear();
 
     lastStartTag = null;
-    lastEndTag = null;
     lastEvent = null;
 
     offsetBlocks = 0;
@@ -176,7 +173,6 @@ public class BoilerpipeHTMLContentHandler implements ContentHandler {
     }
 
     lastEvent = Event.END_TAG;
-    lastEndTag = localName;
 
     labelStacks.removeLast();
   }
