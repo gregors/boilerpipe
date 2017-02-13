@@ -170,7 +170,6 @@ public abstract class CommonTagActions {
       return false;
     }
   };
-  private static final Pattern PAT_FONT_SIZE = Pattern.compile("([\\+\\-]?)([0-9])");
 
   /**
    * Explicitly marks this tag a simple "block-level" element, which always generates whitespace
@@ -190,6 +189,7 @@ public abstract class CommonTagActions {
     }
   };
 
+  private static final Pattern PAT_FONT_SIZE = Pattern.compile("([\\+\\-]?)([0-9])");
   /**
    * Special TagAction for the <code>&lt;FONT&gt;</code> tag, which keeps track of the absolute and
    * relative font size.
