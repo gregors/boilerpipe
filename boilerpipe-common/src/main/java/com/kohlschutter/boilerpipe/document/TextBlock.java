@@ -27,8 +27,6 @@ public class TextBlock implements Cloneable {
   float textDensity;
   float linkDensity;
 
-  BitSet containedTextElements;
-
   private int numFullTextWords = 0;
   private int tagLevel;
 
@@ -41,11 +39,10 @@ public class TextBlock implements Cloneable {
     this(text, null, 0, 0, 0, 0, 0);
   }
 
-  public TextBlock(final String text, final BitSet containedTextElements, final int numWords,
+  public TextBlock(final String text, final int numWords,
       final int numWordsInAnchorText, final int numWordsInWrappedLines, final int numWrappedLines,
       final int offsetBlocks) {
     this.text = new StringBuilder(text);
-    this.containedTextElements = containedTextElements;
     this.numWords = numWords;
     this.numWordsInAnchorText = numWordsInAnchorText;
     this.numWordsInWrappedLines = numWordsInWrappedLines;
@@ -108,12 +105,6 @@ public class TextBlock implements Cloneable {
     initDensities();
 
     this.isContent |= other.isContent;
-
-    if (containedTextElements == null) {
-      containedTextElements = (BitSet) other.containedTextElements.clone();
-    } else {
-      containedTextElements.or(other.containedTextElements);
-    }
 
     numFullTextWords += other.numFullTextWords;
 
@@ -226,15 +217,6 @@ public class TextBlock implements Cloneable {
     }
   }
 
-  /**
-   * Returns the containedTextElements BitSet, or <code>null</code>.
-   * 
-   * @return
-   */
-  public BitSet getContainedTextElements() {
-    return containedTextElements;
-  }
-
   @Override
   protected TextBlock clone() {
     final TextBlock clone;
@@ -248,9 +230,6 @@ public class TextBlock implements Cloneable {
     }
     if (labels != null && !labels.isEmpty()) {
       clone.labels = new HashSet<String>(labels);
-    }
-    if (containedTextElements != null) {
-      clone.containedTextElements = (BitSet) containedTextElements.clone();
     }
 
     return clone;

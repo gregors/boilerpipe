@@ -40,7 +40,6 @@ public class BoilerpipeHTMLContentHandler implements ContentHandler {
   int blockTagLevel = -1;
 
   boolean sbLastWasWhitespace = false;
-  private int textElementIdx = 0;
 
   private final List<TextBlock> textBlocks = new ArrayList<TextBlock>();
 
@@ -49,7 +48,6 @@ public class BoilerpipeHTMLContentHandler implements ContentHandler {
   private Event lastEvent = null;
 
   private int offsetBlocks = 0;
-  private BitSet currentContainedTextElements = new BitSet();
 
   private boolean flush = false;
   boolean inAnchorText = false;
@@ -68,7 +66,6 @@ public class BoilerpipeHTMLContentHandler implements ContentHandler {
     inAnchor = 0;
     inIgnorableElement = 0;
     sbLastWasWhitespace = false;
-    textElementIdx = 0;
 
     textBlocks.clear();
 
@@ -76,7 +73,6 @@ public class BoilerpipeHTMLContentHandler implements ContentHandler {
     lastEvent = null;
 
     offsetBlocks = 0;
-    currentContainedTextElements.clear();
 
     flush = false;
     inAnchorText = false;
@@ -179,7 +175,6 @@ public class BoilerpipeHTMLContentHandler implements ContentHandler {
 
   // @Override
   public void characters(char[] ch, int start, int length) throws SAXException {
-    textElementIdx++;
 
     if (flush) {
       flushBlock();
@@ -268,7 +263,6 @@ public class BoilerpipeHTMLContentHandler implements ContentHandler {
     sbLastWasWhitespace = endWhitespace;
     lastEvent = Event.CHARACTERS;
 
-    currentContainedTextElements.set(textElementIdx);
   }
 
   List<TextBlock> getTextBlocks() {
@@ -343,9 +337,8 @@ public class BoilerpipeHTMLContentHandler implements ContentHandler {
     }
 
     TextBlock tb =
-        new TextBlock(textBuffer.toString().trim(), currentContainedTextElements, numWords,
+        new TextBlock(textBuffer.toString().trim(), numWords,
             numLinkedWords, numWordsInWrappedLines, numWrappedLines, offsetBlocks);
-    currentContainedTextElements = new BitSet();
 
     offsetBlocks++;
 
