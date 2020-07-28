@@ -25,7 +25,7 @@ import com.kohlschutter.boilerpipe.labels.DefaultLabels;
 
 /**
  * Describes a block of text.
- * 
+ *
  * A block can be an "atomic" text element (i.e., a sequence of text that is not interrupted by any
  * HTML markup) or a compound of such atomic elements.
  */
@@ -46,7 +46,6 @@ public class TextBlock implements Cloneable {
 
   BitSet containedTextElements;
 
-  private int numFullTextWords = 0;
   private int tagLevel;
 
   private static final BitSet EMPTY_BITSET = new BitSet();
@@ -132,8 +131,6 @@ public class TextBlock implements Cloneable {
       containedTextElements.or(other.containedTextElements);
     }
 
-    numFullTextWords += other.numFullTextWords;
-
     if (other.labels != null) {
       if (labels == null) {
         labels = new HashSet<String>(other.labels);
@@ -170,7 +167,7 @@ public class TextBlock implements Cloneable {
 
   /**
    * Adds an arbitrary String label to this {@link TextBlock}.
-   * 
+   *
    * @param label The label
    * @see DefaultLabels
    */
@@ -183,7 +180,7 @@ public class TextBlock implements Cloneable {
 
   /**
    * Checks whether this TextBlock has the given label.
-   * 
+   *
    * @param label The label
    * @return <code>true</code> if this block is marked by the given label.
    */
@@ -197,11 +194,11 @@ public class TextBlock implements Cloneable {
 
   /**
    * Returns the labels associated to this TextBlock, or <code>null</code> if no such labels exist.
-   * 
+   *
    * NOTE: The returned instance is the one used directly in TextBlock. You have full access to the
    * data structure. However it is recommended to use the label-specific methods in
    * {@link TextBlock} whenever possible.
-   * 
+   *
    * @return Returns the set of labels, or <code>null</code> if no labels was added yet.
    */
   public Set<String> getLabels() {
@@ -211,7 +208,7 @@ public class TextBlock implements Cloneable {
   /**
    * Adds a set of labels to this {@link TextBlock}. <code>null</code>-references are silently
    * ignored.
-   * 
+   *
    * @param l The labels to be added.
    */
   public void addLabels(final Set<String> l) {
@@ -228,7 +225,7 @@ public class TextBlock implements Cloneable {
   /**
    * Adds a set of labels to this {@link TextBlock}. <code>null</code>-references are silently
    * ignored.
-   * 
+   *
    * @param l The labels to be added.
    */
   public void addLabels(final String... l) {
@@ -245,7 +242,7 @@ public class TextBlock implements Cloneable {
 
   /**
    * Returns the containedTextElements BitSet, or <code>null</code>.
-   * 
+   *
    * @return
    */
   public BitSet getContainedTextElements() {
